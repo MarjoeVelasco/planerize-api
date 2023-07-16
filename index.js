@@ -27,7 +27,7 @@ try {
     console.log(`App is listening to port ${PORT}`);
   });
 } catch (error) {
-  console.error(`Failed to connect: ${error}`);
+  console.error(`Failed to connect: ${error} ${process.env.PROD_DB_URL} ${process.env.DB_DATABASE}`);
 }
 
 // Add your middleware
