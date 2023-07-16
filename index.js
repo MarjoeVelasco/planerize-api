@@ -27,7 +27,7 @@ try {
     console.log(`App is listening to port ${PORT}`);
   });
 } catch (error) {
-  console.error('Failed to connect');
+  console.error('Failed to connect:'. error.message);
 }
 
 // Add your middleware
