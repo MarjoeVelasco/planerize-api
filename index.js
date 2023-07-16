@@ -16,7 +16,7 @@ dotenv.config({ path: '../.env' });
 
 const app = express();
 const PORT = process.env.PORT;
-const DB_URL = `${PROD_DB_URL}/${process.env.DB_DATABASE}`;
+const DB_URL = `${process.env.PROD_DB_URL}/${process.env.DB_DATABASE}`;
 
 app.set('port', PORT);
 
