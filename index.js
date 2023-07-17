@@ -16,13 +16,17 @@ dotenv.config({ path: '../.env' });
 
 const app = express();
 const PORT = process.env.PORT;
-const DB_URL = `${process.env.PROD_DB_URL}/${process.env.DB_DATABASE}?retryWrites=true`;
+
+const DB_URL = `${process.env.DB_CONNECTION}//${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}${process.env.DB_HYPEN}${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 app.set('port', PORT);
 
 //establish connection
 try {
-  await mongoose.connect(DB_URL);
+  await mongoose.connect(DB_URL, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+  });
   app.listen(PORT, () => {
     console.log(`App is listening to port ${PORT}`);
   });
@@ -35,20 +39,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(cookieParser());
-
-
 //routes
-app.use('/auth', authRoutes);   //authentication
-app.use('/users', userRoutes);  //users
-app.use('/tags', tagRoutes);    //tags 
-app.use('/tasks', taskRoutes);  //tasks
-
-
-
-app.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Hello World!',
-  });
-});
+app.use('/v1/auth', authRoutes);   //authentication
+app.use('/v1/users', userRoutes);  //users
+app.use('/v1/tags', tagRoutes);    //tags 
+app.use('/v1/tasks', taskRoutes);  //tasks
 
