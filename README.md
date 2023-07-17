@@ -15,12 +15,12 @@ organized and productive.
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`JWT_SECRETKEY`
-`PORT`
 `DB_CONNECTION`
-`DB_HOST`
-`DB_PORT`
-`DB_DATABASE`
+`DB_USERNAME`
+`DB_PASSWORD`
+`DB_NAME`
+`DB_HYPEN`
+`PORT`
 
 ## API Reference
 
