@@ -4,8 +4,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
-
 
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -23,13 +21,17 @@ app.set('port', PORT);
 
 //establish connection
 try {
-  await mongoose.connect(DB_URL, {
+    await mongoose.connect(DB_URL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true 
   });
+  
+  
   app.listen(PORT, () => {
     console.log(`App is listening to port ${PORT}`);
   });
+
+
 } catch (error) {
   console.error(`Failed to connect: ${error} ${DB_URL}`);
 }
@@ -45,3 +47,4 @@ app.use('/v1/users', userRoutes);  //users
 app.use('/v1/tags', tagRoutes);    //tags 
 app.use('/v1/tasks', taskRoutes);  //tasks
 
+export default app;
