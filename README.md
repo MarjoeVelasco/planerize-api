@@ -28,19 +28,18 @@ To run this project, you will need to add the following environment variables to
 
 | HTTP | Endpoint     | Description                |
 | :-------- | :------- | :---------------- |
-| `POST` | `/auth/register` | to register |
-| `POST` | `/auth/login` | to login |
-| `POST` | `/auth/logout` | to log out |
+| `POST` | `/v1/auth/register` | to register |
+| `POST` | `/v1/auth/login` | to login |
 
 #### Categories
 
 | HTTP | Endpoint     | Description                |
 | :-------- | :------- | :---------------- |
-| `GET` | `/tags/:id` | get tag based on ID |
-| `GET` | `/tags/` | get all active tags |
-| `POST` | `/tags/` | insert new tag |
-| `PUT` | `/tags/:id` | update tag |
-| `PUT` | `/tags/:id/archive` | move to archive |
+| `GET` | `/v1/tags/:id` | get tag based on ID |
+| `GET` | `/v1/tags/` | get all active tags |
+| `POST` | `/v1/tags/` | insert new tag |
+| `PUT` | `/v1/tags/:id` | update tag |
+| `PUT` | `/v1/tags/:id/archive` | move to archive |
 
 #### Tasks
 
