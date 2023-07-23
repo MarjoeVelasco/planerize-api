@@ -1,11 +1,12 @@
 import express from 'express';
-import { registerUser, loginUser } from '../controllers/authController.js';
+import {createWorkspace} from '../controllers/workspaceController.js';
 
 const router = express.Router();
-//POST /v1/auth/register
-router.post('/register', registerUser);
-//POST /v1/auth/login
-router.post('/login', loginUser);
+
+//POST /v1/workspace/
+router.post('/:user_id', createWorkspace);
+
+
 // Error handling middleware
 router.use((err, req, res, next) => {
   console.error(err.stack);

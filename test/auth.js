@@ -6,7 +6,7 @@ import chaiHttp from "chai-http";
 import app from "../index.js";
 import User from "../models/user.js";
 
-//Assertion
+//assertions
 chai.should();
 chai.use(chaiHttp);
 
@@ -17,6 +17,7 @@ describe('Authentication APIs', () => {
   });
 
   describe('Test POST route /v1/auth/register', () => { 
+    //test registration 200
     it('It should register a user', (done) => {
       let newUser = {
         name: "mark",
@@ -32,7 +33,7 @@ describe('Authentication APIs', () => {
           done();
       });
     });
-
+    //test duplicate email
     it('It should decline registration and show email exists', (done) => {
       let newUser = {
         name: "mark",
@@ -51,6 +52,7 @@ describe('Authentication APIs', () => {
 
 
   describe('Test POST route /v1/auth/login', () => {
+    //test user login
     it('It should login the registered user', (done) => {
       const user = {
         email: "marky@gmail.com",
@@ -65,7 +67,7 @@ describe('Authentication APIs', () => {
         done();
       });
     });
-
+    //test incorrect email
     it('It should show incorrect email or password (error 404) ', (done) => {
       const user = {
         email: "marky55@gmail.com",
@@ -79,7 +81,7 @@ describe('Authentication APIs', () => {
         done();
       });
     });
-
+    //test incorrect password
     it('It should show incorrect email or password (error 410) ', (done) => {
       const user = {
         email: "marky@gmail.com",
@@ -97,9 +99,7 @@ describe('Authentication APIs', () => {
   });
   
   after(async () => {
-    // Close the database connection
     await mongoose.disconnect();
-    // Exit the test process
     process.exit(0);
   });
 
