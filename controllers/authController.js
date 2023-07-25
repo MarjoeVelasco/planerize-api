@@ -14,7 +14,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ message: 'Email already exists' });
+      res.status(409).json({ message: 'Email already exists' });
     }
     // Hash the password before saving the user
     const newUser = new User({ name, email, password });
@@ -33,12 +33,12 @@ export const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: 'Incorrect email or password' });
+      res.status(404).json({ message: 'Incorrect email or password' });
     }
     // Compare the provided password with the stored hashed password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Incorrect email or password'});
+      res.status(401).json({ message: 'Incorrect email or password'});
     }
     // Generate a JWT token and store in cookies
     const token = generateJWTToken(user._id, user.name);
