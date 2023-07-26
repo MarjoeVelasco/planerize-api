@@ -87,11 +87,17 @@ export const inviteUser = asyncHandler(async (req,res) => {
   try {
     const { workspace_id } = req.params;
     const { email } = req.body;
-    
-
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      res.status(409).json({ message: 'Email is not a registered account' });
+    }
+    const user_id = existingUser._id;
+    const updatedWorkspace = await Workspace.updateOne({_id: workspace_id},
+      { $addToSet: { members: user_id }});
+    res.status(201).json({message: 'New member has been added', data: updatedWorkspace});
   } catch (error) {
     console.error('Failed to register user:', error);
-    res.status(500).json({ message: 'Failed to register user' });
+    res.status(500).json({ message: 'Failed to add member' });
   }
 
 });

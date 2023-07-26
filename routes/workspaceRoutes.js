@@ -1,5 +1,5 @@
 import express from 'express';
-import {createWorkspace, listAllWorkspace} from '../controllers/workspaceController.js';
+import {createWorkspace, listAllWorkspace, inviteUser} from '../controllers/workspaceController.js';
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/:user_id', listAllWorkspace);
 
 //PUT /v1/workspace/:workspace_id/
 //add members to workspace
-//router.put('/:workspace_id',)
+router.put('/:workspace_id', inviteUser);
 
 
 
