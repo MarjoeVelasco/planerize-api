@@ -14,7 +14,15 @@ const schema = new Schema({
   members: [{
     type: Types.ObjectId,
     ref: User,
-}],
+  }],
+  cards: [{
+  type: Types.ObjectId,
+  ref: User,
+  }],
+  archived: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true });
 
 const Workspace = model('Workspace', schema);
