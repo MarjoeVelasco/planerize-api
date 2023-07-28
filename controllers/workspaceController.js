@@ -95,5 +95,42 @@ export const inviteUser = asyncHandler(async (req,res) => {
 });
 
 
+export const getWorkspaceCards = asyncHandler(async (req, res) => {
+  try {
+    const { workspace_id } = req.params;
+    const workspacesWithCardsAndDetails = await Workspace.aggregate([
+      {
+        $match: { _id: new mongoose.Types.ObjectId(workspace_id) }
+      },
+      {
+        $lookup: {
+          from: "cards",
+          localField: "cards",
+          foreignField: "_id",
+          as: "card_data"
+        }
+      },
+      {
+        $project: {
+          "title": 1,
+          "archived":1, 
+          "members":1,
+          "card_data._id": 1,
+          "card_data.title": 1,
+          "card_data.description": 1,
+          "card_data.status": 1,
+          "card_data.delete": 1,
+        }
+      }
+    ]);
+    res.status(201).json({ message: 'Fetch cards successful', data: workspacesWithCardsAndDetails });
+  } catch (error) {
+    console.error('Failed to fetch cards:', error);
+    res.status(500).json({ message: 'Failed to fetch cards' });
+  }
+});
+
+
+
 
 

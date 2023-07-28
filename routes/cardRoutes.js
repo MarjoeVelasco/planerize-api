@@ -1,5 +1,5 @@
 import express from 'express';
-import {createCard} from '../controllers/cardController.js';
+import {createCard, getCardDetails} from '../controllers/cardController.js';
 
 
 const router = express.Router();
@@ -8,7 +8,9 @@ const router = express.Router();
 //create card
 router.post('/:workspace_id', createCard);
 
-
+//GET /v1/card/:card_id
+//get details of a card
+router.get('/:card_id', getCardDetails);
 
 
 // Error handling middleware

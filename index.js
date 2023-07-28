@@ -10,7 +10,7 @@ import authRoutes from './routes/authRoutes.js';
 import workspaceRoutes from './routes/workspaceRoutes.js';
 import cardRoutes from './routes/cardRoutes.js';
 
-import tagRoutes from './routes/tagRoutes.js';
+import activityRoutes from './routes/activityRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 
 dotenv.config({ path: '../.env' });
@@ -47,13 +47,10 @@ app.use(cors());
 //routes
 app.use('/v1/auth', authRoutes);   //authentication
 app.use('/v1/workspace', workspaceRoutes) //workspaces
-app.use('/v1/card', cardRoutes);
-
-
-
-
+app.use('/v1/card', cardRoutes);  //card
+app.use('/v1/task', taskRoutes);  //tasks
+app.use('/v1/activity', activityRoutes);  //activity
 app.use('/v1/users', userRoutes);  //users
-app.use('/v1/tags', tagRoutes);    //tags 
-app.use('/v1/tasks', taskRoutes);  //tasks
+
 
 export default app;
