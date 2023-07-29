@@ -1,5 +1,5 @@
 import express from 'express';
-import {addActivity, removeActivity} from '../controllers/activityController.js';
+import {addActivity, removeActivity,updateActivity} from '../controllers/activityController.js';
 
 const router = express.Router();
 
@@ -11,8 +11,7 @@ router.post('/:card_id/:user_id', addActivity);
 //delete activity
 router.delete('/:card_id/:activity_id', removeActivity);
 
-
-
+router.put('/:activity_id',updateActivity);
 
 
 export default router;

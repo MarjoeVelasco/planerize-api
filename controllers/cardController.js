@@ -52,5 +52,16 @@ export const getCardDetails = asyncHandler (async (req, res) => {
     console.error('Failed to fetch details:', error);
     res.status(500).json({ message: 'Failed to fetch details' });
   }
+});
 
+export const changeStatus = asyncHandler(async (req, res) => {
+  try {
+    const { card_id } = req.params;
+    const { status } = req.body;
+    const result = await Card.findByIdAndUpdate(card_id,{ status});   
+    res.status(200).json({message: 'Card updated', data: result});
+  } catch (error) {
+    console.error('Failed to update:', error);
+    res.status(500).json({ message: 'Failed to update' });
+  }
 });
