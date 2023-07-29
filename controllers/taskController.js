@@ -25,3 +25,24 @@ export const addTask = asyncHandler(async (req, res) => {
   }
 });
 
+export const removeTask = asyncHandler (async (req, res) => {
+  try {
+    const { card_id, task_id } = req.params;
+    const deletedTask = await Task.findByIdAndRemove(task_id);
+    if(!deletedTask) {
+      res.status(404).json({message: 'Task not found'})
+    }
+
+    const result = await Card.updateOne(
+      { _id: card_id },
+      { $pull: { task: task_id } }
+    );
+
+    res.status(200).json({message:'Task deleted', data: result});
+
+  } catch (error) {
+    console.error('Failed to remove task:', error);
+    res.status(500).json({ message: 'Failed to remove task' });
+  }
+});
+

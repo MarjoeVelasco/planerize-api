@@ -26,7 +26,6 @@ export const createCard = asyncHandler(async (req, res) => {
 export const getCardDetails = asyncHandler (async (req, res) => {
   try {
     const {card_id} = req.params;
-    
     const cardDetails = await Card.aggregate([
       {
         $match: { _id: new mongoose.Types.ObjectId(card_id) }
@@ -47,11 +46,8 @@ export const getCardDetails = asyncHandler (async (req, res) => {
           as: "task_data"
         }
       },
-      
     ]);
     res.status(201).json({ message: 'Fetch cards successful', data: cardDetails });
-
-
   } catch (error) {
     console.error('Failed to fetch details:', error);
     res.status(500).json({ message: 'Failed to fetch details' });
