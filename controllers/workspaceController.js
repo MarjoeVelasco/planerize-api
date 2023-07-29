@@ -121,7 +121,6 @@ export const archiveWorkspace = asyncHandler(async (req, res) => {
   }
 });
 
-
 export const getWorkspaceCards = asyncHandler(async (req, res) => {
   try {
     const { workspace_id } = req.params;
@@ -156,7 +155,6 @@ export const getWorkspaceCards = asyncHandler(async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch cards' });
   }
 });
-
 
 export const updateWorkpace = asyncHandler(async (req, res) => {
   try {
