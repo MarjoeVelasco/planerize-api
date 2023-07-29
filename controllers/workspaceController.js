@@ -94,6 +94,33 @@ export const inviteUser = asyncHandler(async (req,res) => {
   }
 });
 
+export const removeUser = asyncHandler(async (req, res) => {
+  try {
+    const { workspace_id, user_id } = req.params;
+    const result = await Workspace.updateOne(
+      { _id: workspace_id },
+      { $pull: { members: user_id } }
+    );
+    res.status(200).json({message: 'Member has been removed', data: result});
+  } catch (error) {
+    console.error('Failed to remove member:', error);
+    res.status(500).json({ message: 'Failed to remove member' });
+  }
+});
+
+export const archiveWorkspace = asyncHandler(async (req, res) => {
+  try {
+    const { workspace_id } = req.params;
+    const result = await Workspace.updateOne(
+      {_id: workspace_id},
+      {$set: {archived: true}})
+      res.status(200).json({message: 'Workspace has been archived', data: result});
+  } catch (error) {
+    console.error('Failed to archive workspace:', error);
+    res.status(500).json({ message: 'Failed to archive workspace' });
+  }
+});
+
 
 export const getWorkspaceCards = asyncHandler(async (req, res) => {
   try {
@@ -130,6 +157,20 @@ export const getWorkspaceCards = asyncHandler(async (req, res) => {
   }
 });
 
+
+export const updateWorkpace = asyncHandler(async (req, res) => {
+  try {
+    const { workspace_id } = req.params;
+    const { title } = req.body;
+    const result = await Workspace.updateOne(
+      {_id: workspace_id},
+      {$set: {title: title}})
+    res.status(200).json({message: 'Workspace has been updated', data: result});
+  } catch (error) {
+    console.error('Failed to update workspace:', error);
+    res.status(500).json({ message: 'Failed to update workspace' });
+  }
+});
 
 
 
