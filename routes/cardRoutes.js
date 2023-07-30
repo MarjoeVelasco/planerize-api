@@ -16,7 +16,7 @@ router.get('/:card_id', verifyJwtToken, getCardDetails);
 
 //PUT /v1/card/:card_id
 //change status of card
-
+router.put('/:card_id', verifyJwtToken, changeStatus);
 
 router.put('/card-details/:card_id', verifyJwtToken, updateCardDetails);
 
