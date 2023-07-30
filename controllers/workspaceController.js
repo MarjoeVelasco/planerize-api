@@ -7,11 +7,9 @@ import { io } from '../index.js'; // Replace the path with the correct path to y
 // create workspace
 export const createWorkspace = asyncHandler(async (req, res) => {
   try {
-
     //get token details
     console.log(req.user.userId);
     console.log(req.user.email);
-
     const { title } = req.body;
     const  user_id  = req.user.userId;
     const newWorkspaceData = {

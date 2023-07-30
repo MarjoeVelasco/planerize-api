@@ -13,7 +13,7 @@ router.put('/:workspace_id',verifyJwtToken, updateWorkpace);
 
 //GET /v1/workspace/:user_id/
 //list all workspaces of user
-router.get('/:user_id', verifyJwtToken, listAllWorkspace);
+router.get('/', verifyJwtToken, listAllWorkspace);
 
 //PUT /v1/workspace/:workspace_id/
 //add members to workspace
