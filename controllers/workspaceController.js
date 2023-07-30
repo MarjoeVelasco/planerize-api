@@ -6,6 +6,12 @@ import mongoose from "mongoose";
 // create workspace
 export const createWorkspace = asyncHandler(async (req, res) => {
   try {
+
+    //get token details
+    console.log(req.user);
+    console.log(req.user.userId);
+    console.log(req.user.email);
+
     const { title } = req.body;
     const { user_id } = req.params; 
     const newWorkspaceData = {
@@ -121,7 +127,6 @@ export const archiveWorkspace = asyncHandler(async (req, res) => {
   }
 });
 
-
 export const getWorkspaceCards = asyncHandler(async (req, res) => {
   try {
     const { workspace_id } = req.params;
@@ -156,7 +161,6 @@ export const getWorkspaceCards = asyncHandler(async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch cards' });
   }
 });
-
 
 export const updateWorkpace = asyncHandler(async (req, res) => {
   try {

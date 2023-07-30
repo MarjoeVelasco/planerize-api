@@ -8,6 +8,12 @@ const SECRET_KEY = 'thisisasecretkey';
 const generateJWTToken = (userId, name) => {
   return jwt.sign({ userId, name }, SECRET_KEY, { expiresIn: '1h' });
 };
+
+  // You can also set the token in other response headers if needed
+const setTokenInResponse = (res, token) => {
+  res.setHeader('Authorization', `Bearer ${token}`);
+};
+
 //register user
 export const registerUser = asyncHandler(async (req, res) => {
   try {
@@ -19,9 +25,8 @@ export const registerUser = asyncHandler(async (req, res) => {
     // Hash the password before saving the user
     const newUser = new User({ name, email, password });
     await newUser.save();
-    // Generate a JWT token and store in cookies
-    const token = generateJWTToken(newUser._id, newUser.name);
-    res.status(200).json({ message: 'User registered successfully', token });
+    res.status(200).json({ message: 'User registered successfully'});
+    
   } catch (error) {
     console.error('Failed to register user:', error);
     res.status(500).json({ message: 'Failed to register user' });
@@ -42,6 +47,8 @@ export const loginUser = asyncHandler(async (req, res) => {
     }
     // Generate a JWT token and store in cookies
     const token = generateJWTToken(user._id, user.name);
+    // Set the token in the response headers
+    setTokenInResponse(res, token);
     res.status(200).json({ message: 'User login successful', token });
   } catch (error) {
     console.error('Login error:', error);
