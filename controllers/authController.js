@@ -25,11 +25,8 @@ export const registerUser = asyncHandler(async (req, res) => {
     // Hash the password before saving the user
     const newUser = new User({ name, email, password });
     await newUser.save();
-    // Generate a JWT token and store in cookies
-    const token = generateJWTToken(newUser._id, newUser.name);
-    // Set the token in the response headers
-    setTokenInResponse(res, token);
-    res.status(200).json({ message: 'User registered successfully', token });
+    res.status(200).json({ message: 'User registered successfully'});
+    
   } catch (error) {
     console.error('Failed to register user:', error);
     res.status(500).json({ message: 'Failed to register user' });
