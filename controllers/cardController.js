@@ -21,8 +21,6 @@ export const createCard = asyncHandler(async (req, res) => {
   }
 });
 
-
-
 export const getCardDetails = asyncHandler (async (req, res) => {
   try {
     const {card_id} = req.params;
@@ -59,6 +57,18 @@ export const changeStatus = asyncHandler(async (req, res) => {
     const { card_id } = req.params;
     const { status } = req.body;
     const result = await Card.findByIdAndUpdate(card_id,{ status});   
+    res.status(200).json({message: 'Card updated', data: result});
+  } catch (error) {
+    console.error('Failed to update:', error);
+    res.status(500).json({ message: 'Failed to update' });
+  }
+});
+
+export const updateCardDetails = asyncHandler (async (req, res) => {
+  try {
+    const { card_id } = req.params;
+    const { title, description } = req.body;
+    const result = await Card.findByIdAndUpdate(card_id,{ title, description}); 
     res.status(200).json({message: 'Card updated', data: result});
   } catch (error) {
     console.error('Failed to update:', error);

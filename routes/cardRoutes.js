@@ -1,6 +1,7 @@
 import express from 'express';
 import { verifyJwtToken } from '../middlewares/auth.js';
-import {createCard, getCardDetails, changeStatus} from '../controllers/cardController.js';
+import {createCard, getCardDetails, changeStatus, updateCardDetails} from '../controllers/cardController.js';
+
 
 
 const router = express.Router();
@@ -15,7 +16,9 @@ router.get('/:card_id', verifyJwtToken, getCardDetails);
 
 //PUT /v1/card/:card_id
 //change status of card
-router.put('/:card_id', verifyJwtToken, changeStatus);
+
+
+router.put('/card-details/:card_id', verifyJwtToken, updateCardDetails);
 
 // Error handling middleware
 router.use((err, req, res, next) => {
