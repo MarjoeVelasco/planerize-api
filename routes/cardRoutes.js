@@ -3,6 +3,7 @@ import { verifyJwtToken } from '../middlewares/auth.js';
 import {createCard, getCardDetails, changeStatus, updateCardDetails} from '../controllers/cardController.js';
 
 
+
 const router = express.Router();
 
 //POST /v1/card/:workspace_id
@@ -15,7 +16,7 @@ router.get('/:card_id', verifyJwtToken, getCardDetails);
 
 //PUT /v1/card/:card_id
 //change status of card
-router.put('/:card_id', verifyJwtToken, changeStatus);
+
 
 router.put('/card-details/:card_id', verifyJwtToken, updateCardDetails);
 
