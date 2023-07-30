@@ -1,4 +1,5 @@
 import express from 'express';
+import { verifyJwtToken } from '../middlewares/auth.js';
 import {createCard, getCardDetails, changeStatus} from '../controllers/cardController.js';
 
 
@@ -6,15 +7,15 @@ const router = express.Router();
 
 //POST /v1/card/:workspace_id
 //create card
-router.post('/:workspace_id', createCard);
+router.post('/:workspace_id', verifyJwtToken, createCard);
 
 //GET /v1/card/:card_id
 //get details of a card
-router.get('/:card_id', getCardDetails);
+router.get('/:card_id', verifyJwtToken, getCardDetails);
 
 //PUT /v1/card/:card_id
 //change status of card
-router.put('/:card_id', changeStatus);
+router.put('/:card_id', verifyJwtToken, changeStatus);
 
 // Error handling middleware
 router.use((err, req, res, next) => {
