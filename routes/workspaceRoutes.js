@@ -4,9 +4,9 @@ import {updateWorkpace, archiveWorkspace, createWorkspace, listAllWorkspace, inv
 
 const router = express.Router();
 
-//POST /v1/workspace/:user_id
+//POST /v1/workspace/
 //create workspace
-router.post('/:user_id', verifyJwtToken, createWorkspace);
+router.post('/', verifyJwtToken, createWorkspace);
 
 //PUT
 router.put('/:workspace_id',verifyJwtToken, updateWorkpace);
