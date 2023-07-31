@@ -32,7 +32,7 @@ export const getCardDetails = asyncHandler(async (req, res) => {
 
     const cardDetails = await Card.aggregate([
       {
-        $match: { _id: new mongoose.Types.ObjectId(card_id) },
+        $match: { _id: card._id },
       },
       {
         $lookup: {

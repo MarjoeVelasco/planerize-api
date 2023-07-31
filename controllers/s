@@ -1,0 +1,102 @@
+{
+    "message": "Fetch cards successful",
+    "data": [
+        {
+            "_id": "64c2409e89040f2585c6e4a1",
+            "title": "food endpoint",
+            "description": "test this",
+            "status": "in progress",
+            "delete": false,
+            "createdAt": "2023-07-27T10:02:06.421Z",
+            "updatedAt": "2023-07-31T07:13:32.796Z",
+            "__v": 0,
+            "activity": [
+                "64c7511f6fd3ae959aa2bd82",
+                "64c75267c3f6ba781bec8dc3",
+                "64c752d309557a2e4b52d097",
+                "64c75c3fdd186c8cc836ac2c"
+            ],
+            "activity_data": [
+                {
+                    "_id": "64c7511f6fd3ae959aa2bd82",
+                    "commenter": "64bc19825dd2a5476f16af20",
+                    "content": "testing",
+                    "createdAt": "2023-07-31T06:13:51.509Z",
+                    "updatedAt": "2023-07-31T06:13:51.509Z",
+                    "commenter_data": [
+                        {
+                            "_id": "64bc19825dd2a5476f16af20",
+                            "name": "mark",
+                            "email": "marky@gmail.com"
+                        }
+                    ]
+                },
+                {
+                    "_id": "64c75267c3f6ba781bec8dc3",
+                    "commenter": "64bc19825dd2a5476f16af20",
+                    "content": "test2",
+                    "createdAt": "2023-07-31T06:19:19.909Z",
+                    "updatedAt": "2023-07-31T06:19:19.909Z",
+                    "commenter_data": [
+                        {
+                            "_id": "64bc19825dd2a5476f16af20",
+                            "name": "mark",
+                            "email": "marky@gmail.com"
+                        }
+                    ]
+                },
+                {
+                    "_id": "64c752d309557a2e4b52d097",
+                    "commenter": "64c5e5813965054194bf2357",
+                    "content": "test333",
+                    "createdAt": "2023-07-31T06:21:07.147Z",
+                    "updatedAt": "2023-07-31T06:21:07.147Z",
+                    "commenter_data": [
+                        {
+                            "_id": "64bc19825dd2a5476f16af20",
+                            "name": "mark",
+                            "email": "marky@gmail.com"
+                        }
+                    ]
+                },
+                {
+                    "_id": "64c75c3fdd186c8cc836ac2c",
+                    "commenter": "64c5e5813965054194bf2357",
+                    "content": "test333",
+                    "createdAt": "2023-07-31T07:01:19.315Z",
+                    "updatedAt": "2023-07-31T07:01:19.315Z",
+                    "commenter_data": [
+                        {
+                            "_id": "64bc19825dd2a5476f16af20",
+                            "name": "mark",
+                            "email": "marky@gmail.com"
+                        }
+                    ]
+                }
+            ],
+            "task_data": [
+                    {
+                        "_id": "64c3a6c5f49c352b3df27df3",
+                        "title": "taste breads",
+                        "checked": false,
+                        "__v": 0
+                    },
+                
+                    {
+                        "_id": "64c3a75fefa295a4619a7582",
+                        "title": "feed birds",
+                        "checked": false,
+                        "__v": 0
+                    },
+                
+                    {
+                        "_id": "64c75f0fdd186c8cc836ac31",
+                        "title": "test333",
+                        "checked": false,
+                        "__v": 0
+                    }
+                
+            ]
+        }
+    ]
+}
