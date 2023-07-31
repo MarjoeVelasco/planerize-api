@@ -37,6 +37,53 @@ export const getCardDetails = asyncHandler (async (req, res) => {
         }
       },
       {
+        $unwind: "$activity_data"
+      },
+      {
+        $lookup: {
+          from: "users",
+          let: { commenterId: "$activity_data.commenter" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $eq: ["$_id", "$$commenterId"]
+                }
+              }
+            },
+            {
+              $project: {
+                _id: 1,
+                name: 1,
+                email: 1
+              }
+            }
+          ],
+          as: "activity_data.commenter_data"
+        }
+      },
+      {
+        $group: {
+          _id: "$_id",
+          title: { $first: "$title" },
+          description: { $first: "$description" },
+          status: { $first: "$status" },
+          delete: { $first: "$delete" },
+          createdAt: { $first: "$createdAt" },
+          updatedAt: { $first: "$updatedAt" },
+          __v: { $first: "$__v" },
+          activity: { $first: "$activity" },
+          activity_data: { $push: "$activity_data" },
+          task: { $first: "$task" }
+        }
+      },
+      {
+        $unwind: {
+          path: "$task",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
         $lookup: {
           from: "tasks",
           localField: "task",
@@ -44,6 +91,21 @@ export const getCardDetails = asyncHandler (async (req, res) => {
           as: "task_data"
         }
       },
+      {
+        $group: {
+          _id: "$_id",
+          title: { $first: "$title" },
+          description: { $first: "$description" },
+          status: { $first: "$status" },
+          delete: { $first: "$delete" },
+          createdAt: { $first: "$createdAt" },
+          updatedAt: { $first: "$updatedAt" },
+          __v: { $first: "$__v" },
+          activity: { $first: "$activity" },
+          activity_data: { $first: "$activity_data" },
+          task_data: { $push: "$task_data" }
+        }
+      }
     ]);
     res.status(201).json({ message: 'Fetch cards successful', data: cardDetails });
   } catch (error) {
