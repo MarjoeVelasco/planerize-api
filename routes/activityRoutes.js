@@ -6,7 +6,7 @@ const router = express.Router();
 
 //POST /v1/activity/:card_id/:user_id
 //create activity
-router.post('/:card_id/:user_id',verifyJwtToken, addActivity);
+router.post('/:card_id',verifyJwtToken, addActivity);
 
 //delete /v1/activity/:card_id/:user_id
 //delete activity

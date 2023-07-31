@@ -6,14 +6,14 @@ const router = express.Router();
 
 //POST /v1/workspace/:user_id
 //create workspace
-router.post('/:user_id', verifyJwtToken, createWorkspace);
+router.post('/', verifyJwtToken, createWorkspace);
 
 //PUT
 router.put('/:workspace_id',verifyJwtToken, updateWorkpace);
 
 //GET /v1/workspace/:user_id/
 //list all workspaces of user
-router.get('/:user_id', verifyJwtToken, listAllWorkspace);
+router.get('/', verifyJwtToken, listAllWorkspace);
 
 //PUT /v1/workspace/:workspace_id/
 //add members to workspace
