@@ -10,7 +10,8 @@ export const addActivity = asyncHandler(async (req, res) => {
   try {
     const { card_id } = req.params;
     const { content } = req.body;
-    const  user_id  = req.user.userId;
+    const user_id = req.user.userId;
+    
 
     const activityData = { commenter: user_id, content: content };
     const newActivity = new Activity(activityData); // Remove the extra braces around activityData

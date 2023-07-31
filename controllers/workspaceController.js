@@ -8,10 +8,9 @@ import { io } from '../index.js'; // Replace the path with the correct path to y
 export const createWorkspace = asyncHandler(async (req, res) => {
   try {
     //get token details
-    console.log(req.user.userId);
-    console.log(req.user.email);
+   
     const { title } = req.body;
-    const  user_id  = req.user.userId;
+    const user_id = req.user.userId;
     const newWorkspaceData = {
       title: title,
       user_id: user_id,
@@ -30,7 +29,7 @@ export const createWorkspace = asyncHandler(async (req, res) => {
 //get workspaces based on logged in user
 export const listAllWorkspace = asyncHandler(async (req, res) => {
   try {
-    const user_id  = req.user.userId;
+    const user_id = req.user.userId;
     const userObjectId = new mongoose.Types.ObjectId(user_id);
     const workspaces = await Workspace.aggregate([
       {
