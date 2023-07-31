@@ -21,7 +21,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     // Hash the password before saving the user
     const newUser = new User({ name, email, password });
     await newUser.save();
-    const token = generateJWTToken(user._id, user.name);
+    const token = generateJWTToken(newUser._id, newUser.name);
     res.status(200).json({ message: 'User registered successfully', token});
     
   } catch (error) {
